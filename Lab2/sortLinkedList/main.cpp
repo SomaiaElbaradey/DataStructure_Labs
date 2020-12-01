@@ -7,6 +7,11 @@ public:
     int data;
     Node* prev;
     Node* next;
+    Node& operator=(const Node& right)
+    {
+        data = right.data;
+        return *this;
+    }
 };
 class LinkedList
 {
@@ -16,7 +21,7 @@ private:
 public:
     LinkedList()
     {
-        head=tail=NULL;
+        head = tail = NULL;
     }
     static Node* createNode(int data)
     {
@@ -44,10 +49,10 @@ public:
     void display()
     {
         Node* current = head;
-        while(current!=NULL)
+        while(current!= NULL)
         {
-            cout<< current->data << endl;
-            current= current->next;
+            cout << current->data << endl;
+            current = current->next;
         }
     }
     Node* searchNode(int data)
@@ -55,14 +60,14 @@ public:
         Node* current = head;
         while(current!= NULL)
         {
-            if(current->data==data)
+            if(current->data == data)
             {
                 cout << "the searched node with value: " << data << ", exist!" <<endl;
                 return current;
             }
             else
             {
-                current=current->next;
+                current = current->next;
             }
         }
         cout << "the searched node with value: " << data << ", doesn't exist!" << endl;
@@ -96,6 +101,13 @@ public:
             cout << "the deleted node with the value: " << deletedNode->data << ", doesn't exist" << endl;
         }
     }
+    void swap(Node& x, Node& y)
+    {
+        Node temp;
+        temp = x;
+        x = y;
+        y = temp;
+    }
     void insertAfter(Node* newNode, Node* beforeNew)
     {
         if(beforeNew == tail)
@@ -112,24 +124,49 @@ public:
             beforeNew->next = newNode;
         }
     }
+    void selectionSort()
+    {
+        Node* min;
+        Node* current;
+        Node* counter;
+        counter = this->head;
+        while(counter != this->tail)
+        {
+            min = counter;
+            current = min;
+            while (current != this->tail)
+            {
+                current = current->next;
+                if(current->data < min->data)
+                {
+                    min = current;
+                }
+            }
+            if(min != counter)
+            {
+                this->swap(*counter, *min);
+            }
+            counter= counter->next;
+        }
+    }
 };
 int main()
 {
-    Node n1;
-    n1.data=1;
-    Node n2;
-    n2.data=20;
     LinkedList l1;
-    l1.addNode(&n1);
+    l1.addNode(LinkedList::createNode(50));
+    l1.addNode(LinkedList::createNode(20));
+    l1.addNode(LinkedList::createNode(30));
     l1.addNode(LinkedList::createNode(10));
+    Node n1;
+    Node n2;
+    n1.data = 80;
+    n2.data = 2;
+    l1.addNode(&n1);
     l1.addNode(&n2);
-    l1.insertAfter(LinkedList::createNode(5),&n2);
+    cout << "the linked list before the sort: " << endl;
     l1.display();
-    Node* n3 = l1.searchNode(10);
-    Node* n4 = l1.searchNode(70);
-    Node n5;
-    n5.data = 80;
-    l1.deleteNode(&n5);
+    cout << "the linked list after sorting: " << endl;
+    l1.selectionSort();
     l1.display();
     return 0;
 }
