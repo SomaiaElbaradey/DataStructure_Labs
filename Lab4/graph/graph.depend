@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1607117025 source:d:\iti\courses\datastructure\datastructurelabs\lab4\graph\main.cpp
+	<iostream>
+	"Graph.h"
+
+1607117172 d:\iti\courses\datastructure\datastructurelabs\lab4\graph\include\graph.h
+	<string.h>
+	"LinkedList.h"
+	"Vertex.h"
+
+1607117067 d:\iti\courses\datastructure\datastructurelabs\lab4\graph\include\linkedlist.h
+
+1607117077 d:\iti\courses\datastructure\datastructurelabs\lab4\graph\include\vertex.h
+	"LinkedList.h"
+
