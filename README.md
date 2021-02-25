@@ -1,4 +1,4 @@
-# DataStructure
+# Data Structure
 This repository contains implementations of certain exercises in data structures and algorithms, in C++.
 
 ## Lab1:
